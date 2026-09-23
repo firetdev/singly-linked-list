@@ -9,7 +9,7 @@ typedef struct Node {
 
 Node* create_node(int v) {
 	Node* new_node = malloc(sizeof(*new_node));  // Allocate memory
-	
+
     if (new_node == NULL) {
 		perror("Failed to allocate memory");
 		return(NULL);
