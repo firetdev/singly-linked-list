@@ -1,14 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// Define type
 typedef struct Node {
 	int value;
 	struct Node* next;
 } Node;
 
 Node* create_node(int v) {
-	Node* new_node = malloc(sizeof(*new_node));
-	if (new_node == NULL) {
+	Node* new_node = malloc(sizeof(*new_node));  // Allocate memory
+	
+    if (new_node == NULL) {
 		perror("Failed to allocate memory");
 		return(NULL);
 	}
@@ -22,9 +24,9 @@ Node* create_node(int v) {
 void push_back(Node** head_ref, int value) {
 	Node* new_node = create_node(value);
 
-	if (!new_node) return;
+	if (!new_node) return;  // Memory allocation failed
 
-	if (*head_ref == NULL) {
+	if (*head_ref == NULL) {  // There is no existing node in the list
 		*head_ref = new_node;
 		return;
 	}
@@ -37,14 +39,15 @@ void push_back(Node** head_ref, int value) {
 	current->next = new_node;
 }
 
+// Inserts AFTER the requested index
 void list_insert(Node** head_ref, int value, int index) {
 	if (index < 0) return;
 
 	Node* new_node = create_node(value);
 
-	if (!new_node) return;
+	if (!new_node) return;  // Memory allocation failed
 
-	if (*head_ref == NULL) {
+	if (*head_ref == NULL) {  // Cannot insert without at least one item in the list
 		free(new_node);
 		return;
 	}
@@ -60,20 +63,20 @@ void list_insert(Node** head_ref, int value, int index) {
 		new_node->next = current->next;
 		current->next = new_node;
 	} else {
-		free(new_node);
+		free(new_node);  // The requested index doesn't exist; free the memory
 	}
 }
 
 void list_remove(Node** head_ref, int index) {
 	if (index < 0) return;
 
-	Node** current = head_ref;
+	Node** current = head_ref;  // A pointer to the pointer to the current node
 
-	for (int i = 0; i < index && *current != NULL; i++) {
-		current = &(*current)->next;
+	for (int i = 0; i < index && *current != NULL; i++) {  // *current is the Node* stored at this location
+		current = &(*current)->next;  // Set current = a pointer to the pointer to the next node
 	}
 
-	if (*current == NULL) {
+	if (*current == NULL) {  // Nothing to delete
 		return;
 	}
 
