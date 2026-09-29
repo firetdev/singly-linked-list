@@ -102,3 +102,14 @@ void free_list(Node* head) {
 		free(last);
 	}
 }
+
+Node* list_search(Node** head_ref, int value) {
+	Node** current = head_ref;
+
+	while ((*current)->next != NULL && (*current)->value != value) {
+		current = &(*current)->next;
+	}
+
+	if ((*current)->value != value) return NULL;
+	return *current;
+}

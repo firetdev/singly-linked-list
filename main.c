@@ -10,6 +10,14 @@ int main(void) {
 	list_insert(&head, 22, 2);
 	list_remove(&head, 3);
 
+	Node* found = list_search(&head, 30);
+
+	if (found != NULL) {
+		printf("Found value: %d\n", found->value);
+	} else {
+		printf("Value not found\n");
+	}
+
 	print_list(head);
 
 	free_list(head);
