@@ -103,8 +103,11 @@ void free_list(Node* head) {
 	}
 }
 
+// Search list by value
 Node* list_search(Node** head_ref, int value) {
 	Node** current = head_ref;
+
+	if (*current == NULL) return NULL;  // List is empty
 
 	while ((*current)->next != NULL && (*current)->value != value) {
 		current = &(*current)->next;
