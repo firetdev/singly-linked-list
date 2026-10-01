@@ -12,7 +12,7 @@ Node* create_node(int v) {
 
     if (new_node == NULL) {
 		perror("Failed to allocate memory");
-		return(NULL);
+		return NULL;
 	}
 
 	new_node->value = v;
